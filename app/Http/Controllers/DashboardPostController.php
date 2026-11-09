@@ -81,8 +81,25 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
+        $relatedPosts = Post::where('category_id', $post->category_id)
+            ->where('id', '!=', $post->id)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $comments = $post->comments()
+            ->whereNull('parent_id')
+            ->with(['user', 'replies'])
+            ->latest()
+            ->get();
+
+        $totalComments = $post->comments()->count();
+
         return view('dashboard.posts.show', [
-            'post' => $post
+            'post' => $post,
+            'relatedPosts' => $relatedPosts,
+            'comments' => $comments,
+            'totalComments' => $totalComments
         ]);
     }
 

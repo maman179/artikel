@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Homepage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Blog;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\AdminCategoryController;
@@ -36,6 +37,34 @@ Route::middleware('CekLogin')->group(function () {
 
     Route::get('/posts', [Blog::class, 'index'])->name('posts');
     Route::get('/posts/{post:slug}', [Blog::class, 'show'])->name('post');
+
+    // Tambah komentar
+    Route::post(
+        '/dashboard/posts/{post:slug}/comments',
+        [CommentController::class, 'store']
+    )
+        ->name('comments.store');
+
+    // Edit komentar
+    Route::put(
+        '/dashboard/posts/{post:slug}/comments/{comment}',
+        [CommentController::class, 'update']
+    )
+        ->name('comments.update');
+
+    // Hapus komentar
+    Route::delete(
+        '/dashboard/posts/{post:slug}/comments/{comment}',
+        [CommentController::class, 'destroy']
+    )
+        ->name('comments.destroy');
+
+    // Reply komentar
+    Route::post(
+        '/dashboard/posts/{post:slug}/comments/{comment}/reply',
+        [CommentController::class, 'reply']
+    )
+        ->name('comments.reply');
 
     Route::get('/authors/{user:username}', [Blog::class, 'posts'])->name('posts_author');
 

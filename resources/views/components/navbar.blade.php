@@ -29,18 +29,21 @@
             </nav>
         </div>
         @auth
-            {{-- LOGOUT --}}
-            <a href="/logout"
-                class="rounded-xl bg-red-700 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-red-800 hover:shadow-md">
-                Logout
+            <!-- LOGOUT -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                    class="rounded-xl bg-red-700 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-red-800 hover:shadow-md">
+
+                    <span>Logout</span>
+                </button>
+            </form>
+        @else
+            {{-- LOGIN --}}
+            <a href="/login"
+                class="rounded-xl bg-green-700 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-green-800 hover:shadow-md">
+                Login
             </a>
-        </div>
-    @else
-        {{-- LOGIN --}}
-        <a href="/login"
-            class="rounded-xl bg-green-700 px-5 py-2.5 font-semibold text-white shadow-sm transition hover:bg-green-800 hover:shadow-md">
-            Login
-        </a>
         </div>
     @endauth
 </nav>

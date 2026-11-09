@@ -1,17 +1,3 @@
-{{-- <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
-
-    <main class="pt-20 flex-1 w-full min-h-screen">
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">
-                        {{$title}}
-                    </h1>
-                </div>
-            </div>
-            <div class="mb-4">
-            </div> --}}
-
 {{-- HEADER --}}
 <div class="min-h-screen lg:ml-64">
     {{-- NAVBAR --}}

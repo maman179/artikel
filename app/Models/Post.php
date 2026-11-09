@@ -49,6 +49,11 @@ class Post extends Model
         ];
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     public function scopeFilter(Builder $query, array $filters): void
     {
         $query->when(
